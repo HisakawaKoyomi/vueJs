@@ -1,2 +1,2 @@
-# Html_study
+# vueJs
 start to learn vue.js, lalalalalala~
