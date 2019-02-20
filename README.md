@@ -2,7 +2,7 @@
 start to learn vue.js, lalalalalala~
 
 ----
-## 简易登记表值作  
+## 简易登记表制作  
 
 ### 功能
   * boostrap实现基本外观  
