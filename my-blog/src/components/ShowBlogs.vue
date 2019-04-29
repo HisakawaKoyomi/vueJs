@@ -3,7 +3,9 @@
     <h1>博客总览</h1>
     <input type="text" placeholder="搜索" v-model="search">
     <div class="single-blog" v-for="blog in filteredBlogs">
+      <router-link v-bind:to="'/blog/' + blog.id">
       <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
+      </router-link>
       <article>
         {{blog.body | snippet}}
       </article>
@@ -72,12 +74,21 @@
     padding: 0 20px;
   }
   #show-blogs input {
+    width: 95%;
+    box-sizing: border-box;
     margin: 0 20px;
+    padding: 8px;
+  }
+  #show-blogs a{
+    text-decoration: none;
+    color: #444;
   }
   .single-blog {
     padding: 20px;
     margin: 20px;
     box-sizing: border-box;
     background: #eee;
+    border: 1px dotted #aaa;
   }
+
 </style>

@@ -3,12 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import VueResource from 'vue-resource'
+import VueRouter from 'vue-router'
+import Routes from './routes'
+
 
 Vue.config.productionTip = false
 
 // 全局使用ajax插件
 Vue.use(VueResource);
-
+// 全局使用路由插件
+Vue.use(VueRouter);
 /*
 // 自定义全局指令 -> 后改为了局部
 Vue.directive('rainbow',{
@@ -24,10 +28,16 @@ Vue.filter('to-uppercase',function (value) {
 });
 */
 
+// 创建路由
+const router = new VueRouter({
+  routes: Routes,
+  mode: "history"
+});
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  router: router
 });
