@@ -1,6 +1,6 @@
 <template>
   <div id="add-blog">
-    <h2>添加博客</h2>
+    <h2>编辑博客</h2>
     <form v-if="!submited">
       <label>博客标题</label>
       <input type="text" v-model="blog.title" required>
@@ -22,11 +22,11 @@
         <option v-for="author in authors">{{author}}</option>
       </select>
 
-      <button @click.prevent="post">添加博客</button>
+      <button @click.prevent="put">编辑博客</button>
     </form>
 
     <div v-if="submited">
-      <h3>您的博客发布成功</h3>
+      <h3>您的博客修改成功</h3>
     </div>
 
     <div id="preview">
@@ -46,27 +46,33 @@
 
 <script>
   export default {
-    name: "add-blog",
+    name: "edit-blog",
     data() {
       return {
-        blog: {
-          title: "",
-          content: "",
-          categories: [],
-          author: ""
-        },
+        id: this.$route.params.id,
+        blog: {},
         authors: ["yukino", "koyomi", "luna"],
         submited: false
       }
     },
     methods: {
-      post: function () {
-        this.axios.post("/posts.json", this.blog)
+      put() {
+        this.axios.put("/posts/" + this.id + ".json", this.blog)
           .then((response) => {
             console.log(response);
             this.submited = true;
           });
+      },
+      fetchData() {
+        //console.log(this.id);
+        this.axios.get("/posts/" + this.id + ".json")
+          .then((data) => {
+            this.blog = data.data;
+          })
       }
+    },
+    created() {
+      this.fetchData();
     }
   }
 </script>
@@ -125,5 +131,6 @@
   h3{
     margin-top: 10px;
   }
+
 
 </style>

@@ -2,15 +2,18 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
-import VueResource from 'vue-resource'
+//import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Routes from './routes'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
-
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // 全局使用ajax插件
-Vue.use(VueResource);
+//Vue.use(VueResource);
+Vue.use(VueAxios,axios);
+axios.defaults.baseURL = "https://vuedemo-a83f5.firebaseio.com";
 // 全局使用路由插件
 Vue.use(VueRouter);
 /*

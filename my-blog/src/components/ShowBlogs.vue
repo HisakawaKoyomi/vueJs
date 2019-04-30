@@ -3,11 +3,11 @@
     <h1>博客总览</h1>
     <input type="text" placeholder="搜索" v-model="search">
     <div class="single-blog" v-for="blog in filteredBlogs">
-      <router-link v-bind:to="'/blog/' + blog.id">
+      <router-link :to="'/blog/' + blog.id">
       <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
       </router-link>
       <article>
-        {{blog.body | snippet}}
+        {{blog.content | snippet}}
       </article>
     </div>
   </div>
@@ -23,9 +23,19 @@
         }
       },
       created() {
-        this.$http.get('./../static/posts.json')
-          .then(function (data) {
-            this.blogs = data.body.slice(0,10);
+        this.axios.get('/posts.json')
+          .then((data) => {
+            console.log(data.data);
+            return data.data;
+            //this.blogs = data.body.slice(0,10);
+          })
+          .then((data) => {
+            let blogsArray = [];
+            for (let key in data){
+              data[key].id = key;
+              blogsArray.push(data[key]);
+            }
+            this.blogs = blogsArray;
           })
       },
       computed: {
@@ -40,7 +50,10 @@
           return value.toUpperCase()
         },
         snippet(value) {
-          return value.slice(0,100) + "..."
+          if (value.length > 100){
+            value = value.slice(0,100) + "..."
+          }
+          return value
         }
       },
       directives: {
