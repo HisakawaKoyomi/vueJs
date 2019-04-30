@@ -19,5 +19,10 @@ start to learn vue.js, lalalalalala~
   * 实现博客的展现，写入，修改，删除，跳转，搜索功能
   * 组件化管理  
   
+  不足：上线后(放入github中),若采用  
+  https://hisakawakoyomi.github.io/vueJs/my-blog/dist/index.html  
+  的方式访问，则无法进入默认页面;
+  路由设置存在问题(or 服务器存放资源方式错误？)
+  
   ---
 **后续项目有待添加...**
