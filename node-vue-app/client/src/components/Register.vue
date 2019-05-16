@@ -1,10 +1,68 @@
 <template>
-    
+  <div class="register">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 m-auto">
+          <h1 class="display-4 text-center">注册</h1>
+          <p class="lead text-center">创建新的账户</p>
+
+          <form @submit.prevent="submit" autocomplete="off" method="post">
+            <TextField type="text" name="name" placeholder="用户名"
+                       v-model="newUser.name" :error="errors.name"></TextField>
+            <TextField type="email" name="email" placeholder="邮箱地址"
+                       v-model="newUser.email" :error="errors.email"></TextField>
+            <TextField type="password" name="password" placeholder="密码"
+                       v-model="newUser.password" :error="errors.password"></TextField>
+            <TextField type="password" name="password" placeholder="确认密码"
+                       v-model="newUser.password2" :error="errors.password2"></TextField>
+
+            <input type="submit" class="btn btn-info btn-block mt-4">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+  import TextField from "./common/TextFieldGroup"
     export default {
-        name: "Register"
+      name: "Register",
+      data() {
+        return {
+          newUser: {
+            name: "",
+            email: "",
+            password: "",
+            password2: ""
+          },
+          errors: {}
+        }
+      },
+      components: {
+        TextField
+      },
+      methods: {
+        submit() {
+          this.$axios.post("/api/users/register",this.newUser)
+            .then(res => {
+              this.$store.dispatch("setUser",res.data);
+              this.$router.push("/login");
+
+              // 提升体验
+              this.errors = {};
+              this.newUser = {
+                name: "",
+                email: "",
+                password: "",
+                password2: ""
+              };
+            }).catch(err => {
+              this.errors = err.response.data;
+              console.log(this.errors);
+          })
+        }
+      }
     }
 </script>
 

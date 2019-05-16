@@ -17,24 +17,24 @@ module.exports = function validateRegisterInput(data) {
     }
 
     if (!Validator.isEmail(data.email)) {
-        errors.name = "邮箱不合法!";
+        errors.email = "邮箱不合法!";
     }
     if (Validator.isEmpty(data.email)) {
-        errors.name = "邮箱不能为空!";
+        errors.email = "邮箱不能为空!";
     }
 
     if (!Validator.isLength(data.password,{min:6,max:30})) {
-        errors.name = "密码的长度不能小于6位且不能大于30位!";
+        errors.password = "密码的长度不能小于6位且不能大于30位!";
     }
     if (Validator.isEmpty(data.password)) {
-        errors.name = "密码不能为空!";
+        errors.password = "密码不能为空!";
     }
 
     if (Validator.isEmpty(data.password2)) {
-        errors.name = "确认密码不能为空!";
+        errors.password2 = "确认密码不能为空!";
     }
     if (!Validator.equals(data.password,data.password2)) {
-        errors.name = "两次密码输入不一致!"
+        errors.password = "两次密码输入不一致!"
     }
     // console.log(isEmpty(errors));
 

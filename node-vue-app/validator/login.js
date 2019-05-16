@@ -8,14 +8,14 @@ module.exports = function validateLoginInput(data) {
     data.password = !isEmpty(data.password) ? data.password : "";
 
     if (!Validator.isEmail(data.email)) {
-        errors.name = "邮箱不合法!";
+        errors.email = "邮箱不合法!";
     }
     if (Validator.isEmpty(data.email)) {
-        errors.name = "邮箱不能为空!";
+        errors.email = "邮箱不能为空!";
     }
 
     if (Validator.isEmpty(data.password)) {
-        errors.name = "密码不能为空!";
+        errors.password = "密码不能为空!";
     }
 
     return {

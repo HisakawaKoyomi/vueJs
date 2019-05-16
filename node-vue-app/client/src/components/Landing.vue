@@ -7,8 +7,8 @@
             <p class="display-4 mb-4">米果在线</p>
             <p class="lead">专注于在线教育，以提供更加优质的服务</p>
             <hr />
-            <a href="register.html" class="btn btn-xs btn-info mr-2">注册</a>
-            <a href="login.html" class="btn btn-xs btn-light">登录</a>
+            <router-link to="/register" class="btn btn-xs btn-info mr-2" v-show="!isLogin">注册</router-link>
+            <router-link to="/login" class="btn btn-xs btn-light" v-show="!isLogin">登录</router-link>
           </div>
         </div>
       </div>
@@ -18,7 +18,16 @@
 
 <script>
     export default {
-        name: "Landing"
+      name: "Landing",
+      computed: {
+        isLogin() {
+          if (this.$store.getters.isAuthenticated){
+            return true
+          }else {
+            return false
+          }
+        }
+      }
     }
 </script>
 
