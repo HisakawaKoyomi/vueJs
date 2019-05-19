@@ -1,17 +1,22 @@
 <template>
-  <div class="form-group">
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i :class="icon"></i>
+      </span>
+    </div>
+
     <input :type="type" class="form-control form-control-lg" :placeholder="placeholder" :name="name"
-           :class="{'is-invalid': error}" :disabled="disabled" :value="value" @input="emitInput($event)">
+           :class="{'is-invalid': error}" :value="value" @input="emitInput($event)">
     <div v-if="error" class="invalid-feedback">
       {{error}}
     </div>
-    <small v-if="info" class="form-text text-muted">{{info}}</small>
   </div>
 </template>
 
 <script>
     export default {
-      name: "TextFieldGroup",
+      name: "InputGroup",
       props: {
         type: {
           type: String,
@@ -20,9 +25,8 @@
         placeholder: String,
         name: String,
         error: String,
-        disabled: Boolean,
-        info: String,
-        value: String
+        value: String,
+        icon: String
       },
       methods: {
         emitInput($event) {

@@ -10,7 +10,7 @@
             <TextField type="text" name="name" placeholder="用户名"
                        v-model="newUser.name" :error="errors.name"></TextField>
             <TextField type="email" name="email" placeholder="邮箱地址"
-                       v-model="newUser.email" :error="errors.email"></TextField>
+                       v-model="newUser.email" :error="errors.email" info="我们使用了gravatar全球公认头像, 如果需要有头像显示, 请使用在gravatar注册的邮箱"></TextField>
             <TextField type="password" name="password" placeholder="密码"
                        v-model="newUser.password" :error="errors.password"></TextField>
             <TextField type="password" name="password" placeholder="确认密码"

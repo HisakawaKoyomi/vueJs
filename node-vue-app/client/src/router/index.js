@@ -4,6 +4,10 @@ import Landing from "../components/Landing"
 import Login from "../components/Login"
 import Register from "../components/Register"
 import Dashboard from "../components/Dashboard"
+import CreateProfile from "../components/CreateProfile"
+import EditProfile from "../components/EditProfile"
+import AddExperience from "../components/AddExperience"
+import AddEducation from "../components/AddEducation"
 
 Vue.use(Router);
 
@@ -15,7 +19,11 @@ const route = new Router({
     {path: "/", component: Landing},
     {path: "/login", component: Login},
     {path: "/register", component: Register},
-    {path: "/dashboard", component: Dashboard}
+    {path: "/dashboard", component: Dashboard},
+    {path: "/create-profile", component: CreateProfile},
+    {path: "/edit-profile", component: EditProfile},
+    {path: "/add-experience", component: AddExperience},
+    {path: "/add-education", component: AddEducation}
   ]
 });
 

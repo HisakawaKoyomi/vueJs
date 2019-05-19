@@ -5,6 +5,7 @@
       <router-view></router-view>
     </keep-alive>
     <Footer></Footer>
+    <Loading v-show="loading"></Loading>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import NavBar from "./components/NavBar"
 import Landing from "./components/Landing"
 import Footer from "./components/Footer"
+import Loading from "./components/common/Loading"
 import jwt_decode from "jwt-decode"
 
 export default {
@@ -19,7 +21,13 @@ export default {
   components: {
     NavBar,
     Landing,
-    Footer
+    Footer,
+    Loading
+  },
+  computed: {
+    loading() {
+      return this.$store.getters.loading;
+    }
   },
   created() {
     if (localStorage.jwtToken){
@@ -28,8 +36,11 @@ export default {
       // 判断token是否过期
       const currentTime = Date.now() / 1000;
       if (decoded.exp < currentTime){
-        this.$store.dispatch("setIsAuthenticated",false);
-        this.$store.dispatch("setUser",{});
+        localStorage.removeItem("jwtToken");
+        this.$store.dispatch("clearCurrentState");
+        /*this.$store.dispatch("setIsAuthenticated",false);
+        this.$store.dispatch("setUser",{});*/
+        this.$router.push("/login");
       }else {
         this.$store.dispatch("setIsAuthenticated",!this.isEmpty(decoded));
         this.$store.dispatch("setUser",decoded);

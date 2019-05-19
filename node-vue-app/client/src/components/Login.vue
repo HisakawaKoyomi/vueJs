@@ -6,20 +6,12 @@
           <h1 class="display-4 text-center">登录</h1>
           <p class="lead text-center">用已有的账号登录</p>
           <form @submit.prevent="submit" autocomplete="off" method="post">
-            <div class="form-group">
-              <input type="email" class="form-control form-control-lg" placeholder="邮箱地址" name="email"
-                     v-model="user.email" :class="{'is-invalid': errors.email}">
-              <div v-if="errors.email" class="invalid-feedback">
-                {{errors.email}}
-              </div>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control form-control-lg" placeholder="密码" name="password"
-                     v-model="user.password" :class="{'is-invalid': errors.password}">
-              <div v-if="errors.password" class="invalid-feedback">
-                {{errors.password}}
-              </div>
-            </div>
+
+            <TextField type="email" name="email" placeholder="邮箱地址"
+                       v-model="user.email" :error="errors.email" info=""></TextField>
+            <TextField type="password" name="password" placeholder="密码"
+                       v-model="user.password" :error="errors.password"></TextField>
+
             <input type="submit" class="btn btn-info btn-block mt-4">
           </form>
         </div>
@@ -30,6 +22,7 @@
 
 <script>
   import jwt_decode from "jwt-decode";
+  import TextField from "./common/TextFieldGroup"
 
     export default {
       name: "Login",
@@ -41,6 +34,9 @@
           },
           errors: {}
         }
+      },
+      components: {
+        TextField
       },
       methods: {
         submit() {
