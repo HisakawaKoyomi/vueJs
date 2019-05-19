@@ -6,7 +6,7 @@
           <h1 class="display-4">Dashboard</h1>
           <p v-if="user != null" class="lead text-muted">
             Welcome
-            <router-link v-if="profile == null" to="/landing">{{user.name}}</router-link>
+            <router-link v-if="profile == null" to="/profiles">{{user.name}}</router-link>
             <router-link v-else :to="`/profile/${profile.handle}`">{{user.name}}</router-link>
           </p>
           <div v-if="profile != null">

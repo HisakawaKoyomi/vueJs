@@ -15,6 +15,9 @@
 
         <ul class="navbar-nav ml-auto">
           <li class="nav-item"  v-show="isLogin">
+            <router-link class="nav-link" to="/posts">留言</router-link>
+          </li>
+          <li class="nav-item"  v-show="isLogin">
             <router-link class="nav-link" to="/dashboard">Dashboard</router-link>
           </li>
           <li class="nav-item"  v-show="!isLogin">

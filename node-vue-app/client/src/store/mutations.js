@@ -14,4 +14,7 @@ export const setLoading = (state,data) => {
   state.loading = data;
 };
 
+export const setProfiles = (state,data) => {
+  state.profiles = data;
+};
 

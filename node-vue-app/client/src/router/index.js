@@ -8,6 +8,10 @@ import CreateProfile from "../components/CreateProfile"
 import EditProfile from "../components/EditProfile"
 import AddExperience from "../components/AddExperience"
 import AddEducation from "../components/AddEducation"
+import Profiles from "../components/Profiles"
+import Profile from "../components/profile/Profile"
+import Posts from "../components/posts/Posts"
+import Post from "../components/posts/Post"
 
 Vue.use(Router);
 
@@ -23,18 +27,22 @@ const route = new Router({
     {path: "/create-profile", component: CreateProfile},
     {path: "/edit-profile", component: EditProfile},
     {path: "/add-experience", component: AddExperience},
-    {path: "/add-education", component: AddEducation}
+    {path: "/add-education", component: AddEducation},
+    {path: "/profiles", component: Profiles},
+    {path: "/profile/:handle", component: Profile},
+    {path: "/posts", component: Posts},
+    {path: "/post/:id", component: Post}
   ]
 });
 
 // 全局路由守卫
-route.beforeEach((to,from,next) => {
+/*route.beforeEach((to,from,next) => {
   const isLogin = !!localStorage.jwtToken;
-  if (to.path == "/login" || to.path == "/register" || to.path == "/"){
+  if (to.path == "/login" || to.path == "/register" || to.path == "/profiles" || to.path == "/profile/:handle" || to.path == "/"){
     next();
   }else {
     isLogin ? next() : next("/login")
   }
-});
+});*/
 
 export default route

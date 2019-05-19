@@ -10,7 +10,8 @@ const state = {
   isAuthenticated: false, // 是否认证
   user: {}, // 存储用户基本信息
   profile: {}, // 存储用户个人信息
-  loading: false // 是否请求
+  loading: false, // 是否请求
+  profiles: [] // 全部用户个人信息
 };
 
 export default new Vuex.Store({
