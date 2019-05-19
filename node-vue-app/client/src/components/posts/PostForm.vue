@@ -5,7 +5,7 @@
         说点什么...
       </div>
       <form @submit.prevent="submit">
-        <TextArea name="text" placeholder="评论内容"
+        <TextArea name="text" placeholder="留言内容"
                   v-model="text" :error="errors.text"></TextArea>
         <input type="submit" class="btn btn-dark">
       </form>

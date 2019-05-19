@@ -6,7 +6,7 @@
         <PostForm @update="getPosts"></PostForm>
         <!--展示评论内容-->
         <PostFeed v-for="post in posts" :key="post._id"
-                  :post="post" @update="getPosts"></PostFeed>
+                  :showAction="true" :post="post" @update="getPosts"></PostFeed>
 
       </div>
     </div>
@@ -39,7 +39,7 @@
         this.$axios.get("/api/posts/all")
           .then(res => {
             this.posts = res.data;
-            console.log(this.posts);
+           // console.log(this.posts);
           }).catch(err => {
             this.errors = err.response.data;
         })

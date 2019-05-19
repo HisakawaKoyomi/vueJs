@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-4">Dashboard</h1>
+          <h1 class="display-4">HomePage</h1>
           <p v-if="user != null" class="lead text-muted">
             Welcome
             <router-link v-if="profile == null" to="/profiles">{{user.name}}</router-link>
@@ -17,7 +17,7 @@
             <Education :education="profile.education" @deleteEducation="deleteEducation"></Education>
             <!--删除用户及个人信息按钮-->
             <div style="margin-bottom: 60px">
-              <button class="btn btn-danger" @click="deleteClick">删除当前账户</button>
+              <button class="btn btn-danger" @click="deleteClick">注销当前账户</button>
             </div>
           </div>
           <div v-else>

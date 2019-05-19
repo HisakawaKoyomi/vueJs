@@ -4,8 +4,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <p class="display-4 mb-4">米果在线</p>
-            <p class="lead">专注于在线教育，以提供更加优质的服务</p>
+            <p class="display-4 mb-4">在线展板</p>
+            <p class="lead">模拟简历的填写展示，罗列所有参与者及留言</p>
             <hr />
             <router-link to="/register" class="btn btn-xs btn-info mr-2" v-show="!isLogin">注册</router-link>
             <router-link to="/login" class="btn btn-xs btn-light" v-show="!isLogin">登录</router-link>

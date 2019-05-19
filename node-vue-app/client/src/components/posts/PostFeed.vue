@@ -12,20 +12,20 @@
         </div>
         <div class="col-md-10">
           <p class="lead">{{post.text}}</p>
-
-              <button type="button" class="btn btn-light mr-1">
+          <span v-if="showAction">
+              <button type="button" @click="likeClick(post._id)" class="btn btn-light mr-1">
                 <i class="text-info fas fa-thumbs-up"></i>
                 <span class="badge badge-light">{{post.likes.length}}</span>
               </button>
-              <button type="button" class="btn btn-light mr-1">
+              <button type="button" @click="unlikeClick(post._id)" class="btn btn-light mr-1">
                 <i class="text-secondary fas fa-thumbs-down"></i>
               </button>
-              <router-link :to="'/post/'+post._id" class="btn btn-info mr-1">鼓励留言</router-link>
+              <router-link :to="`/post/${post._id}`" class="btn btn-info mr-1">鼓励留言</router-link>
               <button v-if="user != null && user.id == post.user" type="button" class="btn btn-danger mr-1"
                       @click="deleteClick(post._id)">
                 <i class="fas fa-times"></i>
               </button>
-
+          </span>
         </div>
       </div>
     </div>
@@ -41,11 +41,29 @@
         }
       },
       props: {
-        post: Object
+        post: Object,
+        showAction: Boolean
       },
       methods: {
         deleteClick(id) {
           this.$axios.delete(`/api/posts/${id}`)
+            .then(res => {
+              this.$emit("update");
+            }).catch(err => {
+              console.log(err.response.data);
+          })
+        },
+        likeClick(id) {
+          this.$axios.post(`/api/posts/like/${id}`)
+            .then(res => {
+              this.$emit("update");
+            }).catch(err => {
+              console.log(err.response.data);
+          })
+
+        },
+        unlikeClick(id) {
+          this.$axios.post(`/api/posts/unlike/${id}`)
             .then(res => {
               this.$emit("update");
             }).catch(err => {
