@@ -26,6 +26,7 @@ start to learn vue.js, lalalalalala~
   https://hisakawakoyomi.github.io/vueJs/my-blog/dist/index.html  
   的方式访问，则无法进入默认页面;
   路由设置存在问题(or 服务器存放资源方式错误？)
+  
   ----
   ## 简易登记表制作  
   
